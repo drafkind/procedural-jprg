@@ -5,10 +5,10 @@ import asciiPanel.AsciiPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.LinkedList;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Stack;
 import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
 
@@ -19,24 +19,40 @@ public class Main {
 
     private GameState gameState;
 
-    public Main() {
-        controllerStack = new Stack<Controller>();
+    private Main() {
+        controllerStack = new Stack<>();
         controllerStack.push(new TempController());
         controller = controllerStack.peek();
         gameState = new GameState();
     }
 
-    public JFrame createGui() {
+    private JFrame createGui() {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         asciiPanel = new AsciiPanel(40, 25, AsciiFont.CP437_16x16);
+        asciiPanel.addKeyListener(new KeyListener(){
+            @Override
+            public void keyTyped(KeyEvent e) {
+                controller.keyTyped(e);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                controller.keyPressed(e);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                controller.keyReleased(e);
+            }
+        });
         frame.getContentPane().setLayout(new BorderLayout());
         frame.getContentPane().add(asciiPanel, BorderLayout.CENTER);
 
         return frame;
     }
 
-    public void startGameLoop() {
+    private void startGameLoop() {
         java.util.Timer timer = new java.util.Timer();
         timer.scheduleAtFixedRate(
             new TimerTask(){

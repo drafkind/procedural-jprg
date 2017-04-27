@@ -2,6 +2,8 @@ package com.rafkind.rogue1;
 
 import asciiPanel.AsciiPanel;
 
+import java.awt.event.KeyEvent;
+
 public class TempController implements Controller {
     @Override
     public GameStateTransition control(AsciiPanel screen, int tick, GameState gameState) {
@@ -15,5 +17,20 @@ public class TempController implements Controller {
         }
 
         return null;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
