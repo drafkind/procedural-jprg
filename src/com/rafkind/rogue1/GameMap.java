@@ -9,7 +9,7 @@ public class GameMap {
     private int mapHeight;
 
     public GameMap() {
-        tiles = Arrays.of();
+        //tiles = Arrays.of();
     }
 
     public void draw(AsciiPanel asciiPanel, int centerX, int centerY) {

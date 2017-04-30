@@ -48,6 +48,7 @@ public class Main {
         });
         frame.getContentPane().setLayout(new BorderLayout());
         frame.getContentPane().add(asciiPanel, BorderLayout.CENTER);
+        frame.pack();
 
         return frame;
     }
