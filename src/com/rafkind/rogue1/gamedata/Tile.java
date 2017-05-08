@@ -1,4 +1,4 @@
-package com.rafkind.rogue1;
+package com.rafkind.rogue1.gamedata;
 
 import java.awt.*;
 

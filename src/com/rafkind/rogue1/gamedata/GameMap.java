@@ -1,15 +1,25 @@
-package com.rafkind.rogue1;
+package com.rafkind.rogue1.gamedata;
 
 import asciiPanel.AsciiPanel;
 
 public class GameMap {
-    private Tile[] tiles;
-    private int[] tileMapData;
-    private int mapWidth;
-    private int mapHeight;
+    private final String id;
+    private final Tile[] tiles;
+    private final int[] tileMapData;
+    private final int mapWidth;
+    private final int mapHeight;
 
-    public GameMap() {
-        //tiles = Arrays.of();
+    public GameMap(
+            final String id,
+            final Tile[] tiles,
+            final int[] tileMapData,
+            final int mapWidth,
+            final int mapHeight) {
+        this.id = id;
+        this.tiles = tiles;
+        this.tileMapData = tileMapData;
+        this.mapWidth = mapWidth;
+        this.mapHeight = mapHeight;
     }
 
     public void draw(AsciiPanel asciiPanel, int centerX, int centerY) {
