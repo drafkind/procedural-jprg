@@ -27,8 +27,8 @@ public class GameMap {
         int maxY = asciiPanel.getHeightInCharacters();
         for (int y = 0; y < maxY; y++) {
             for (int x = 0; x < maxX; x++) {
-                int mapX = x + centerX - maxX/2;
-                int mapY = y + centerY - maxY/2;
+                int mapX = x + centerX - (maxX/2);
+                int mapY = y + centerY - (maxY/2);
                 Tile tile = getTileAt(mapX, mapY);
                 asciiPanel.write(tile.getCharacter(), x, y, tile.getForeground(), tile.getBackground());
             }
@@ -39,7 +39,15 @@ public class GameMap {
         if (x < 0 || x >= mapWidth || y < 0 || y >= mapWidth) {
             return tiles[0];
         } else {
-            return tiles[y * mapWidth + x];
+            return tiles[tileMapData[(y * mapWidth) + x]];
         }
+    }
+
+    public int getMapWidth() {
+        return mapWidth;
+    }
+
+    public int getMapHeight() {
+        return mapHeight;
     }
 }

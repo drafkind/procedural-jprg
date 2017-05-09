@@ -2,6 +2,9 @@ package com.rafkind.rogue1;
 
 import asciiPanel.AsciiFont;
 import asciiPanel.AsciiPanel;
+import com.rafkind.rogue1.gamedata.GameWorld;
+import com.rafkind.rogue1.gamedata.description.GameDescription;
+import com.rafkind.rogue1.gamedata.generator.GameGenerator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +15,9 @@ import java.util.TimerTask;
 
 public class Main {
 
+    public static int VIEWPORT_WIDTH = 40;
+    public static int VIEWPORT_HEIGHT = 25;
+
     private AsciiPanel asciiPanel;
     private Controller controller;
     private Stack<Controller> controllerStack;
@@ -19,17 +25,22 @@ public class Main {
 
     private GameState gameState;
 
+    private GameWorld gameWorld;
+
     private Main() {
-        controllerStack = new Stack<>();
-        controllerStack.push(new TempController());
-        controller = controllerStack.peek();
         gameState = new GameState();
+        gameWorld = new GameGenerator().generateFrom(new GameDescription());
+        MapController mapController = new MapController();
+        mapController.setCurrentMap(gameWorld.getMap("start"));
+        controller = mapController;
+        controllerStack = new Stack<>();
+        controllerStack.push(controller);
     }
 
     private JFrame createGui() {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        asciiPanel = new AsciiPanel(40, 25, AsciiFont.CP437_16x16);
+        asciiPanel = new AsciiPanel(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, AsciiFont.CP437_16x16);
         asciiPanel.addKeyListener(new KeyListener(){
             @Override
             public void keyTyped(KeyEvent e) {
