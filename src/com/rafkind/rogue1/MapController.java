@@ -29,16 +29,19 @@ public class MapController implements Controller {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        System.out.println("keyTyped " + e);
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("keyPressed " + e);
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_UP: cameraY -= 1; break;
+            case KeyEvent.VK_DOWN: cameraY += 1; break;
+            case KeyEvent.VK_LEFT: cameraX -= 1; break;
+            case KeyEvent.VK_RIGHT: cameraX += 1; break;
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        System.out.println("keyReleased " + e);
     }
 }

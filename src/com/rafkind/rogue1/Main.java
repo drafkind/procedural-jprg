@@ -32,6 +32,7 @@ public class Main {
         gameWorld = new GameGenerator().generateFrom(new GameDescription());
         MapController mapController = new MapController();
         mapController.setCurrentMap(gameWorld.getMap("start"));
+
         controller = mapController;
         controllerStack = new Stack<>();
         controllerStack.push(controller);
@@ -60,6 +61,7 @@ public class Main {
         frame.getContentPane().setLayout(new BorderLayout());
         frame.getContentPane().add(asciiPanel, BorderLayout.CENTER);
         frame.pack();
+        asciiPanel.requestFocusInWindow();
 
         return frame;
     }
