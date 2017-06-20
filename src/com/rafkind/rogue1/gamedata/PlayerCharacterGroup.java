@@ -2,6 +2,7 @@ package com.rafkind.rogue1.gamedata;
 
 
 import asciiPanel.AsciiPanel;
+import com.rafkind.rogue1.Camera;
 
 import java.awt.Point;
 import java.util.List;
@@ -47,17 +48,13 @@ public class PlayerCharacterGroup {
         this.gameMap = gameMap;
     }
 
-    public void drawOnMap(AsciiPanel asciiPanel, int centerX, int centerY) {
-        int maxX = asciiPanel.getWidthInCharacters();
-        int maxY = asciiPanel.getHeightInCharacters();
-        int mapX = location.x + centerX - (maxX/2);
-        int mapY = location.y + centerY - (maxY/2);
+    public void drawOnMap(AsciiPanel asciiPanel, Camera camera) {
         PlayerCharacter playerCharacter = playerCharacters.get(0);
 
         asciiPanel.write(
                 playerCharacter.getCharacter(),
-                mapX,
-                mapY,
+                location.x - camera.getUpperLeft().x,
+                location.y - camera.getUpperLeft().y,
                 playerCharacter.getForeground(),
                 playerCharacter.getBackground());
     }

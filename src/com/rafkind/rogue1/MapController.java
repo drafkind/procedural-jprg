@@ -15,10 +15,9 @@ public class MapController implements Controller {
     public GameStateTransition control(AsciiPanel screen, int tick, GameState gameState) {
         PlayerCharacterGroup pcg = gameState.getPlayerCharacterGroup();
         GameMap currentMap = pcg.getGameMap();
-        int cameraX = pcg.getLocation().x;
-        int cameraY = pcg.getLocation().y;
-        currentMap.draw(screen, cameraX, cameraY);
-        pcg.drawOnMap(screen, cameraX, cameraY);
+        Camera camera = Camera.lookAt(currentMap, screen, pcg.getLocation());
+        currentMap.draw(screen, camera);
+        pcg.drawOnMap(screen, camera);
         return null;
     }
 

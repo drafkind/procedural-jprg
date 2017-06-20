@@ -1,6 +1,7 @@
 package com.rafkind.rogue1.gamedata;
 
 import asciiPanel.AsciiPanel;
+import com.rafkind.rogue1.Camera;
 
 public class GameMap {
     private final String id;
@@ -22,13 +23,13 @@ public class GameMap {
         this.mapHeight = mapHeight;
     }
 
-    public void draw(AsciiPanel asciiPanel, int centerX, int centerY) {
+    public void draw(AsciiPanel asciiPanel, Camera camera) {
         int maxX = asciiPanel.getWidthInCharacters();
         int maxY = asciiPanel.getHeightInCharacters();
         for (int y = 0; y < maxY; y++) {
             for (int x = 0; x < maxX; x++) {
-                int mapX = x + centerX - (maxX/2);
-                int mapY = y + centerY - (maxY/2);
+                int mapX = x + camera.getUpperLeft().x;
+                int mapY = y + camera.getUpperLeft().y;
                 Tile tile = getTileAt(mapX, mapY);
                 asciiPanel.write(tile.getCharacter(), x, y, tile.getForeground(), tile.getBackground());
             }
