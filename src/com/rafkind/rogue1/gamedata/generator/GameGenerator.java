@@ -8,6 +8,8 @@ import com.rafkind.rogue1.gamedata.Tile;
 import com.rafkind.rogue1.gamedata.description.GameDescription;
 import sun.java2d.pipe.SpanShapeRenderer;
 
+import java.awt.*;
+
 /**
  * Created by dave on 5/7/2017.
  */
@@ -20,7 +22,7 @@ public class GameGenerator {
             for (int i = 0; i < 100; i++) {
                 double x = (double)(i/100.0) - 0.5;
                 double y = (double)(j/100.0) - 0.5;
-                heights[j*100+i] = SimplexNoise.noise(x, y);
+                heights[j*100+i] = SimplexNoise.noise(x, y, 1, 2);
             }
         }
 
@@ -43,7 +45,8 @@ public class GameGenerator {
                         },
                     //new int[]{0, 1, 0, 1, 0, 1, 0, 1, 0},
                         terrains,
-                    100, 100
+                    100, 100,
+                        new Point(50, 50)
                 )),
             "start");
     }

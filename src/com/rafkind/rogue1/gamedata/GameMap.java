@@ -3,6 +3,8 @@ package com.rafkind.rogue1.gamedata;
 import asciiPanel.AsciiPanel;
 import com.rafkind.rogue1.Camera;
 
+import java.awt.*;
+
 public class GameMap {
     private final String id;
     private final Tile[] tiles;
@@ -10,17 +12,21 @@ public class GameMap {
     private final int mapWidth;
     private final int mapHeight;
 
+    private final Point startLocation;
+
     public GameMap(
             final String id,
             final Tile[] tiles,
             final int[] tileMapData,
             final int mapWidth,
-            final int mapHeight) {
+            final int mapHeight,
+            final Point startLocation) {
         this.id = id;
         this.tiles = tiles;
         this.tileMapData = tileMapData;
         this.mapWidth = mapWidth;
         this.mapHeight = mapHeight;
+        this.startLocation = startLocation;
     }
 
     public void draw(AsciiPanel asciiPanel, Camera camera) {
@@ -50,5 +56,9 @@ public class GameMap {
 
     public int getMapHeight() {
         return mapHeight;
+    }
+
+    public Point getStartLocation() {
+        return startLocation;
     }
 }

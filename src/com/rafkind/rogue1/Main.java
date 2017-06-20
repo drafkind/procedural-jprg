@@ -39,7 +39,7 @@ public class Main {
                         ImmutableList.of(
                             new PlayerCharacter((char) 2, Colors.COLORS[15], Colors.COLORS[1])
                         ),
-                        new Point(0, 0),
+                        startMap.getStartLocation(),
                         startMap));
         MapController mapController = new MapController();
 
